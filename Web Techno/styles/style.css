@@ -1,59 +1,75 @@
 @import url('https://fonts.googleapis.com/css2?family=Annapurna+SIL:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fredericka+the+Great&family=Orbitron:wght@400..900&family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Annapurna SIL", serif;
 }
-body{
+body
+{
     background-color: black;
 }
 /******** Navbar CSS Starts ********/
 nav{
     background-color: black;
 }
-nav:after{
+nav:after
+{
     content: '';
     clear: both;
     display: table;
 }
-nav .logo{
+nav .logo
+{
     float: left;
     color: white;
-    font-size: 27px;
+    font-size: 30px;
     font-weight: 600;
     line-height: 70px;
     padding-left: 60px;
 }
-nav ul{
+nav i
+{
+    margin-right: 10px;
+}
+nav ul
+{
     float: right;
     list-style: none;
     margin-right: 40px;
     position: relative;
 }
-nav ul li{
+nav ul li
+{
     float: left;
     background: black;
     margin: 0 5px;
 }
-nav ul li a{
+nav ul li a
+{
     color: white;
     text-decoration: none;
     line-height: 70px;
     font-size: 18px;
     padding: 8px 15px;
 }
-nav ul li a:hover{
+nav ul li a:hover
+{
     color: #16FF00;
     border-radius: 5px;
     box-shadow: 0 0 5px #16FF00,
                 0 0 5px #16FF00;
 }
-nav ul ul li a:hover{
+nav ul ul li a:hover
+{
     color: #16FF00;
     box-shadow: none;
 }
-nav ul ul{
+nav ul ul
+{
     position: absolute;
     top: 90px;
     border-top: 3px solid #16FF00;
@@ -61,15 +77,18 @@ nav ul ul{
     visibility: hidden;
     transition: top .3s;
 }
-nav ul ul ul{
+nav ul ul ul
+{
     border-top: none;
 }
-nav ul li:hover > ul{
+nav ul li:hover > ul
+{
     top: 70px;
     opacity: 1;
     visibility: visible;
 }
-nav ul ul li{
+nav ul ul li
+{
     position: relative;
     margin: 0px;
     width: 150px;
@@ -77,31 +96,39 @@ nav ul ul li{
     display: list-item;
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 }
-nav ul ul li a{
+nav ul ul li a
+{
     line-height: 50px;
 }
-nav ul ul ul li{
+nav ul ul ul li
+{
     position: relative;
     top: -70px;
     left: 150px;
 }
-.show,.icon,input{
+.show,.icon,input
+{
     display: none;
 }
-@media all and (max-width: 968px){
-    nav ul{
+@media all and (max-width: 968px)
+{
+    nav ul
+    {
         margin-right: 0px;
         float: left;
     }
-    nav .logo{
+    nav .logo
+    {
         padding-left: 30px;
         width: 100%;
     }
-    nav ul li, nav ul ul li{
+    nav ul li, nav ul ul li
+    {
         display: block;
         width: 100%;
     }
-    nav ul ul{
+    nav ul ul
+    {
         top: 70px;
         position: static;
         border-top: none;
@@ -110,17 +137,21 @@ nav ul ul ul li{
         opacity: 1;
         visibility: visible;
     }
-    nav ul ul ul li{
+    nav ul ul ul li
+    {
         position: static;
     }
-    nav ul ul li{
+    nav ul ul li
+    {
         border-bottom: 0px;
         margin-left: 30px;
     }
-    nav ul ul ul a{
+    nav ul ul ul a
+    {
         padding-left: 80px;
     }
-    .show{
+    .show
+    {
         display: block;
         color: white;
         font-size: 18px;
@@ -128,10 +159,12 @@ nav ul ul ul li{
         line-height: 70px;
         cursor: pointer;
     }
-    .show:hover{
+    .show:hover
+    {
         color: #16FF00;
     }
-    .icon{
+    .icon
+    {
         display: block;
         color: white;
         position: absolute;
@@ -140,14 +173,91 @@ nav ul ul ul li{
         font-size: 25px;
         cursor: pointer;
     }
-    nav ul li a:hover{
+    nav ul li a:hover
+    {
         box-shadow: none;
     }
-    .show + a, ul{
+    .show + a, ul
+    {
         display: none;
     }
-    [id^=btn]:checked + ul{
+    [id^=btn]:checked + ul
+    {
         display: block;
     }
 }
 /******** Navbar CSS Ends ********/
+/******** Header CSS Starts ********/
+header div p
+{
+    color: white;
+    letter-spacing: 2px;
+    font-size: 100px;
+    margin: 250px 0 250px 0;
+    font-family: "Righteous", sans-serif;
+    text-align: center;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0008);
+    line-height: 0.70em;
+    outline: none;
+    animation: animate 5s linear infinite;
+}
+@keyframes animate
+{
+    0%,18%,20%,50.1%,60%,65.1%,80%,90.1%,92%
+    {
+        color: white;
+        text-shadow: none;
+    }
+    18.1%,20.1%,30%,50%,60.1%,65%,80.1%,90%,92.1%,100%
+    {
+        color: white;
+        text-shadow: 0 0 10px #16FF00,
+                    0 0 20px #16FF00,
+                    0 0 40px #16FF00,
+                    0 0 80px #16FF00;
+    }
+}
+/******** Header CSS Ends ********/
+/******** Introduction Section CSS Starts ********/
+section 
+{
+    text-align: center;
+}
+section div
+{
+    display: inline-block;
+    margin: 80px 0 80px 0;
+}
+section div p
+{
+    color: white;
+    font-size: 17px;
+    font-family: "Poppins", sans-serif;
+    align-items: center;
+    text-align: center;
+}
+section div img
+{
+    width: 350px;
+    height: 350px;
+}
+.text 
+{
+    vertical-align: middle;
+    margin-right: 100px;
+}
+.image img 
+{
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+.name
+{
+    font-size: 60px;
+    font-family: "Fredericka the Great", serif;
+    color: #16FF00;
+}
+/******** Introduction Section CSS Ends ********/
+/******** Skills Section CSS Starts ********/
+/******** Skills Section CSS Ends ********/
