@@ -31,6 +31,11 @@ nav .logo
     line-height: 70px;
     padding-left: 60px;
 }
+nav .logo a
+{
+    text-decoration: none;
+    color: inherit;
+}
 nav i
 {
     margin-right: 10px;

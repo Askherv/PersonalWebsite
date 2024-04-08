@@ -28,6 +28,11 @@ nav .logo
     line-height: 70px;
     padding-left: 60px;
 }
+nav .logo a
+{
+    text-decoration: none;
+    color: inherit;
+}
 nav i
 {
     margin-right: 10px;
@@ -203,6 +208,15 @@ table tr td
     color: white;
     font-size: 15px;
     
+}
+div ul
+{
+    margin: 20px 0 20px 80px;
+}
+div ul li
+{
+    color: white;
+    font-size: 15px;
 }
 /******** Infos CSS Ends ********/
 /******** Footer CSS Starts ********/
