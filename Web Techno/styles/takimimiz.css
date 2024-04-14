@@ -108,7 +108,11 @@ nav ul ul ul li
     top: -70px;
     left: 150px;
 }
-.show,.icon,input
+.show,.icon
+{
+    display: none;
+}
+nav input
 {
     display: none;
 }

@@ -193,38 +193,90 @@ nav input
     }
 }
 /******** Navbar CSS Ends ********/
-/******** Heritage Info CSS Starts ********/
-section div h1
+/******** Contact CSS Starts ********/
+.contact
 {
+    font-size: 40px;
     color: white;
-    font-size: 30px;
     text-align: center;
-    margin: 20px 0 20px 0;
+    margin-bottom: 10px;
 }
-section div div p
+.contact form
 {
-    color: white;
-    margin: 10px 40px 10px 40px;
+    width: 600px;
+    text-align: center;
+    margin-left: 448PX;
 }
-.container
+form .input-box
 {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
-.container img
+.input-box .input-field
 {
-    width: 400px;
-    height: 300px;
-    border-radius: 20px;
-    margin-left: 20px;
-    margin-bottom: 20px;
+    width: 48.5%;
 }
-.container p
+.field .item
 {
+    width: 100%;
+    padding: 18px;
+    background: transparent;
+    border: 2px solid #16FF00;
+    outline: none;
+    border-radius: 6px;
+    font-size: 16px;
     color: white;
-    margin: 10px 40px 10px 40px;
+    margin: 12px 0;
 }
-/******** Heritage Info CSS Ends ********/
+.field.error .item
+{
+    border-color: red;
+}
+form button
+{
+    padding: 12px 32px;
+    background: #16FF00;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    box-shadow: 0 0 10px #16FF00;
+    font-size: 16px;
+    color: #333;
+    letter-spacing: 1px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: .5s;
+}
+form button:hover
+{
+    box-shadow: none;
+}
+.field .item::placeholder
+{
+    color: rgba(255, 255, 255, .3);
+}
+.field .error-txt
+{
+    font-size: 14.5px;
+    color: red;
+    text-align: left;
+    margin: -5px 0 10px;
+    display: none;
+}
+.field.error .error-txt
+{
+    display: block;
+}
+form .textarea-field .item
+{
+    resize: none;
+}
+form .textarea-field .error-txt
+{
+    margin-top: -10px;
+}
+/******** Contact CSS Ends ********/
 /******** Footer CSS Starts ********/
 footer
 {
