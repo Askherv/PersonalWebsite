@@ -40,26 +40,13 @@
                     </div>
                     <div class="page email-page">
                         <div class="input-box">
-                            <input type="text" class="email" name="email" autofocus placeholder="Email adresinizi giriniz">
+                            <input type="text" class="email" name="email" autocomplete="off" placeholder="Email adresinizi giriniz">
                         </div>
-                        <div class="btn-box">
-                            <button class="btn-next">Devam</button>
-                        </div>
-                    </div>
-
-                    <div class="page password-page">
-                        <div class="input-box">
+                        <div class="input-box" style="margin-top: 15px;">
                             <input type="password" class="password" name="password" placeholder="Şifrenizi giriniz">
                         </div>
-                        <div class="show">
-                            <label>
-                                <input type="checkbox" class="checkbox-pass">
-                                Şifreyi göster
-                            </label>
-                        </div>
                         <div class="btn-box">
-                            <button class="btn-back">Geri</button>
-                            <button type="submit" name="submit" class="btn-login">Giriş Yap</button>
+                            <button type="submit" name="submit" class="btn-login" style="margin: 15px 0 0 155px;">Giriş Yap</button>
                         </div>
                     </div>
                 </div>
@@ -67,34 +54,25 @@
         </div>
     </div>
     <script>
-        const pageBox = document.querySelector('.page-box');
-        const btnNext = document.querySelector('.btn-next');
-        const btnBack = document.querySelector('.btn-back');
-        const checkboxPass = document.querySelector('.checkbox-pass');
-        const passwordInput = document.querySelector('.password');
-        const loginTitle = document.querySelector('.loginTitle-text');
-
-        btnNext.onclick = (e) => {
-            e.preventDefault();
-            pageBox.classList.add('active-pass');
-            setTimeout(() => passwordInput.focus(), 500);
-            loginTitle.innerHTML = 'Hoşgeldiniz!'
-        };
-
-        btnBack.onclick = (e) => {
-            e.preventDefault();
-            pageBox.classList.remove('active-pass');
-            loginTitle.innerHTML = 'Giriş Yap!'
-        };
-
-        checkboxPass.onclick = () => {
-            if(checkboxPass.checked) {
-                passwordInput.type = 'text';
-            }
-            else {
-                passwordInput.type = 'password';
-            }
-        };
+        document.addEventListener('DOMContentLoaded', function () {
+            var form = document.getElementById('form');
+            form.addEventListener('submit', function (event) {
+                var emailInput = document.querySelector('.email');
+                var passwordInput = document.querySelector('.password');
+                if (emailInput.value.trim() === '' || passwordInput.value.trim() === '') {
+                    alert('Lütfen e-posta ve şifre alanlarını doldurun');
+                    event.preventDefault();
+                    return;
+                }
+                var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(emailInput.value)) {
+                    alert('Lütfen geçerli bir e-posta adresi girin');
+                    event.preventDefault();
+                    return;
+                }
+            });
+        });
     </script>
+    
 </body>
 </html>

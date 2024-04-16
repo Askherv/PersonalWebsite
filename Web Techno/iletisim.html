@@ -29,6 +29,7 @@
                 </li>
                 <li><a href="ilgialanlarim.html">İlgi Alanlarım</a></li>
                 <li><a href="iletisim.html">İletişim</a></li>
+                <li><a href="login.php">Giriş Yap</a></li>
             </ul>
         </nav>
         <!--============Navbar Ends============-->
@@ -36,36 +37,34 @@
         <div><hr></div>
         <section class="contact">
             <h2>Bana Ulaşın!</h2>
-            <form action="#">
+            <form action="iletisimbilgileri.php">
                 <div class="input-box">
                     <div class="input-field field">
-                        <input type="text" placeholder="Adınız Soyadınız" id="name" class="item" autocomplete="off">
+                        <input type="text" placeholder="Adınız Soyadınız" id="name" name="name" class="item" autocomplete="off">
                         <div class="error-txt">Ad ve Soyad boş bırakılamaz</div>
                     </div>
                     <div class="input-field field">
-                        <input type="text" placeholder="Email adresiniz" id="email" class="item" autocomplete="off">
+                        <input type="text" placeholder="Email adresiniz" id="email" name="email" class="item" autocomplete="off">
                         <div class="error-txt email">Email adresi boş bırakılamaz</div>
                     </div>
                 </div>
                 <div class="input-box">
                     <div class="input-field field">
-                        <input type="text" placeholder="Telefon numaranız" id="phone" class="item" autocomplete="off">
+                        <input type="text" placeholder="Telefon numaranız" id="phone" name="phone" class="item" autocomplete="off">
                         <div class="error-txt">Telefon numarası boş bırakılamaz</div>
                     </div>
                     <div class="input-field field">
-                        <input type="text" placeholder="Konu" id="subject" class="item" autocomplete="off">
+                        <input type="text" placeholder="Konu" id="subject" name="subject" class="item" autocomplete="off">
                         <div class="error-txt">Konu boş bırakılamaz</div>
                     </div>
                 </div>
                 <div class="textarea-field field">
-                    <textarea name="" id="message" cols="30" rows="10" placeholder="Mesajınız" class="item" autocomplete="off"></textarea>
+                    <textarea name="message" id="message" cols="30" rows="10" placeholder="Mesajınız" class="item" autocomplete="off"></textarea>
                     <div class="error-txt">Mesaj boş bırakılamaz</div>
                 </div>
-                <button type="submit">Gönder</button>
+                <button type="submit" style="margin-right: 10px;">Gönder</button><button type="reset" style="margin-left: 10px;">Yenile</button>
             </form>
         </section>
-        <script src="https://smtpjs.com/v3/smtp.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
             const form = document.querySelector('form');
             const fullName = document.getElementById("name");
@@ -73,30 +72,7 @@
             const phone = document.getElementById("phone");
             const subject = document.getElementById("subject");
             const message = document.getElementById("message");
-            function sendEmail() {
-                const bodyMessage = `Ad ve Soyad: ${fullName.value}<br>
-                                     Email: ${email.value}<br>
-                                     Telefon No: ${phone.value}<br>
-                                     Konu: ${subject.value}<br>
-                                     Mesaj: ${message.value}<br>`;
-                Email.send({
-                    SecureToken : "d8a6bcdf-f2de-4e90-9446-0744e45a23e8",
-                    To : 'askhervn@gmail.com',
-                    From : "askhervn@gmail.com",
-                    Subject : subject.value,
-                    Body : bodyMessage
-                }).then(
-                    message => {
-                        if (message == "OK") {
-                            Swal.fire({
-                                title: "Başarılı!",
-                                text: "Mesajınız başarıyla gönderilmiştir!",
-                                icon: "success"
-                            });
-                        }
-                    }
-                );
-            }
+
             function checkInputs() {
                 const items = document.querySelectorAll(".item");
                 for (const item of items) {
@@ -150,9 +126,7 @@
                 e.preventDefault();
                 checkInputs();
                 if (!fullName.classList.contains("error") && !email.classList.contains("error") && !phone.classList.contains("error") && !subject.classList.contains("error") && !message.classList.contains("error")) {
-                    sendEmail();
-
-                    form.reset();
+                    form.submit();
                     return false;
                 }
             });

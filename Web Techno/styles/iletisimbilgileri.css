@@ -1,0 +1,53 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body
+{
+    background-color: black;
+}
+/******** Contact Info CSS Starts ********/
+.container
+{
+    position: absolute;
+    text-align: center;
+    justify-content: center;
+    width: 500px;
+    height: 420px;
+    border: 2px solid #16ff00;
+    border-radius: 8px;
+    margin: 160px 0 0 450px;
+}
+h1
+{
+    color: white;
+    margin: 15px 0 20px 0;
+}
+.contact-info
+{
+    margin-top: 70px;
+    margin-left: 80px;
+}
+td
+{
+    color: white;
+    text-align: left;
+}
+.btn-home
+{
+    padding: 12px 30px;
+    background: #16FF00;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    box-shadow: 0 0 10px #16FF00;
+    font-size: 16px;
+    color: #333;
+    letter-spacing: 1px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .5s;
+    margin: 17px 60px 0 0;
+}
+/******** Contact Info CSS Ends ********/

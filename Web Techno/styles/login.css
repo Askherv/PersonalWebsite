@@ -50,17 +50,6 @@ body
 {
     transform: translateX(-500px);
 }
-.page-box .page.password-page
-{
-    position: absolute;
-    transform: translateX(500px);
-    margin-top: 140px;
-    transition: .25s ease-in-out;
-}
-.page-box.active-pass .page.password-page
-{
-    transform: translateX(0);
-}
 .page-box .login-title
 {
     text-align: center;
