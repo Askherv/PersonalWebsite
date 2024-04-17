@@ -204,31 +204,60 @@ section div h1
 section div p
 {
     color: white;
-    margin: 20px 50px 0 20px;
+    margin: 20px 5%;
+    text-align: justify;
 }
 section div div p
 {
     color: white;
-    margin: 20px 50px 0 20px;
+    margin: 20px 5%;
+    text-align: justify;
 }
 section div h2
 {
     color: white;
-    margin: 40px 0 10px 70px;
+    margin: 40px 0 10px 5%;
     font-size: 25px;
 }
 section div ul
 {
-    margin: 10px 60px 0 60px;
+    margin: 10px 5%;
+    padding: 0;
 }
 section div ul li
 {
     color: white;
     margin: 15px 0 10px 0;
+    list-style: none;
 }
 section div ul p
 {
     color: white;
+}
+@media screen and (max-width: 768px) {
+    section div p,
+    section div div p,
+    section div h2,
+    section div ul {
+        margin: 20px 5%;
+    }
+
+    section div h2 {
+        margin-left: 5%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    section div p,
+    section div div p,
+    section div h2,
+    section div ul {
+        margin: 20px 3%;
+    }
+
+    section div h2 {
+        margin-left: 3%;
+    }
 }
 *{
     box-sizing:border-box

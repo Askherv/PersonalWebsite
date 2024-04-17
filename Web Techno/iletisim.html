@@ -11,7 +11,7 @@
 <body>
         <!--============Navbar Starts============-->
         <nav>
-            <div class="logo"><i class="fa-solid fa-user-secret"></i><a href="hakkimda.html">N.A.</a></div>
+            <div class="logo"><i class="fa-solid fa-user-secret"></i><a href="hakkimda.php">N.A.</a></div>
             <label for="btn" class="icon">
                 <span class="fa fa-bars"></span>
             </label>
@@ -51,7 +51,7 @@
                 <div class="input-box">
                     <div class="input-field field">
                         <input type="text" placeholder="Telefon numaranız" id="phone" name="phone" class="item" autocomplete="off">
-                        <div class="error-txt">Telefon numarası boş bırakılamaz</div>
+                        <div class="error-txt phone">Telefon numarası boş bırakılamaz</div>
                     </div>
                     <div class="input-field field">
                         <input type="text" placeholder="Konu" id="subject" name="subject" class="item" autocomplete="off">
@@ -89,6 +89,14 @@
                         checkEmail();
                     });
 
+                    if (items[2].value != ""){
+                        checkPhone();
+                    }
+
+                    items[2].addEventListener("keyup", () => {
+                        checkPhone();
+                    });
+
                     item.addEventListener("keyup", () => {
                         if(item.value != "") {
                         item.classList.remove("error");
@@ -99,6 +107,27 @@
                         item.parentElement.classList.add("error");
                         }
                     });
+                }
+            }
+            function checkPhone() {
+                const phoneRegex = /^\d{10}$/;
+
+                const errTxtPhone = document.querySelector(".error-txt.phone");
+
+                if (!phone.value.match(phoneRegex)) {
+                    phone.classList.add("error");
+                    phone.parentElement.classList.add("error");
+
+                     if(phone.value != ""){
+                         errTxtPhone.innerText = "Geçerli bir telefon numarası girinizs"
+                     }
+                     else{
+                        errTxtPhone.innerText = "Telefon numarası boş bırakılamaz"
+                     }
+                }                 
+                else {
+                    phone.classList.remove("error");
+                    phone.parentElement.classList.remove("error");
                 }
             }
             function checkEmail() {

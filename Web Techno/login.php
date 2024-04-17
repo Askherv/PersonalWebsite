@@ -1,5 +1,5 @@
 <?php
-    ob_start();
+    session_start();
     $user='b211210554@sakarya.edu.tr';
     $pass='b211210554';
 
@@ -10,12 +10,13 @@
 
         if ($username==$user && $password==$pass)
         {
-            header('location:hakkimda.html');
+            $_SESSION["password"] = $password;
+            header('location:hakkimda.php');
             exit();
         }
         else 
         {
-            header('location:login.php');
+            $error = "Mail veya şifre hatalı.";
         }
     }
 ?>
@@ -45,6 +46,9 @@
                         <div class="input-box" style="margin-top: 15px;">
                             <input type="password" class="password" name="password" placeholder="Şifrenizi giriniz">
                         </div>
+                        <?php if(!empty($error)): ?>
+                            <div style="color: red; text-align:center; margin-top:10px;"><?php echo $error; ?></div>
+                        <?php endif; ?>
                         <div class="btn-box">
                             <button type="submit" name="submit" class="btn-login" style="margin: 15px 0 0 155px;">Giriş Yap</button>
                         </div>

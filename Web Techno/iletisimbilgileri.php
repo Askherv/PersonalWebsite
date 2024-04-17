@@ -63,7 +63,7 @@
     </div>
     <script>
         function redirectToHakkimda() {
-            window.location.href = "hakkimda.html";
+            window.location.href = "hakkimda.php";
         }
     </script>
 </body>

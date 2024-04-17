@@ -203,23 +203,25 @@ nav input
 }
 .contact form
 {
-    width: 600px;
+    width: 100%;
+    max-width: 600px;
     text-align: center;
-    margin-left: 448PX;
+    margin: 0 auto;
 }
 form .input-box
 {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
 }
 .input-box .input-field
 {
-    width: 48.5%;
+    width: calc(50% - 10px);
 }
 .field .item
 {
     width: 100%;
-    padding: 18px;
+    padding: 15px;
     background: transparent;
     border: 2px solid #16FF00;
     outline: none;
@@ -234,6 +236,7 @@ form .input-box
 }
 form button
 {
+    width: 48%;
     padding: 12px 32px;
     background: #16FF00;
     border: none;
@@ -270,6 +273,14 @@ form button:hover
 }
 form .textarea-field .item
 {
+    width: 100%;
+    padding: 15px;
+    background: transparent;
+    border: 2px solid #16FF00;
+    outline: none;
+    border-radius: 6px;
+    font-size: 16px;
+    color: white;
     resize: none;
 }
 form .textarea-field .error-txt
