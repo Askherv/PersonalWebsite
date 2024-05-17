@@ -3,15 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
     <link rel="stylesheet" href="styles/iletisim.css">
     <link rel="shortcut icon" href="assets/hacker.png" type="image/x-icon">
     <title>N.A. | İletişim</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 </head>
 <body>
         <!--============Navbar Starts============-->
         <nav>
-            <div class="logo"><i class="fa-solid fa-user-secret"></i><a href="hakkimda.php">N.A.</a></div>
+            <div class="logo"><i class="fa-solid fa-user-secret"></i><a href="index.php">N.A.</a></div>
             <label for="btn" class="icon">
                 <span class="fa fa-bars"></span>
             </label>
@@ -35,130 +38,237 @@
         <!--============Navbar Ends============-->
         <!--============Contact Starts============-->
         <div><hr></div>
-        <section class="contact">
-            <h2>Bana Ulaşın!</h2>
-            <form action="iletisimbilgileri.php">
-                <div class="input-box">
-                    <div class="input-field field">
-                        <input type="text" placeholder="Adınız Soyadınız" id="name" name="name" class="item" autocomplete="off">
-                        <div class="error-txt">Ad ve Soyad boş bırakılamaz</div>
+        <section id="app" class="contact">
+            <h3 style="margin-top: 30px;">İletişim</h3>
+            <div v-if="!submitted">
+                <form id="contactForm" @submit.prevent="vueSubmit">
+                    <div class="input-box">
+                        <div class="input-field field">
+                            <input type="text" placeholder="Adınız Soyadınız" id="name" name="name" v-model="name" class="item" autocomplete="off">
+                            <div v-if="errors.name" class="text-danger" style="color: red; font-size: 14px;">{{ errors.name }}</div>
+                        </div>
+                        <div class="input-field field">
+                            <input type="text" placeholder="Email adresiniz" id="email" name="email" v-model="email" class="item" autocomplete="off">
+                            <div v-if="errors.email" class="text-danger" style="color: red; font-size: 14px;">{{ errors.email }}</div>
+                        </div>
                     </div>
-                    <div class="input-field field">
-                        <input type="text" placeholder="Email adresiniz" id="email" name="email" class="item" autocomplete="off">
-                        <div class="error-txt email">Email adresi boş bırakılamaz</div>
+                    <div class="input-box">
+                        <div class="input-field field">
+                            <input type="text" placeholder="Telefon numaranız" id="phone" name="phone" v-model="phone" class="item" autocomplete="off">
+                            <div v-if="errors.phone" class="text-danger" style="color: red; font-size: 14px;">{{ errors.phone }}</div>
+                        </div>
+                        <div class="input-field field">
+                            <input type="text" placeholder="Konu" id="subject" name="subject" class="item" v-model="subject" autocomplete="off">
+                            <div v-if="errors.subject" class="text-danger" style="color: red; font-size: 14px;">{{ errors.subject }}</div>
+                        </div>
                     </div>
+                    <div class="textarea-field field">
+                        <textarea name="message" id="message" v-model="message" cols="30" rows="10" placeholder="Mesajınız" class="item" autocomplete="off"></textarea>
+                        <div v-if="errors.message" class="text-danger" style="color: red; font-size: 14px;">{{ errors.message }}</div>
+                    </div>
+                    <button type="button" style="margin-right: 10px;" onclick="jsSubmit()">Gönder</button><button type="submit" style="margin-right: 10px;">Gönder (Vue.Js)</button>
+                    <button type="reset" style="margin-left: 10px;">Yenile</button>
+                </form>
+            </div>
+            <div v-if="submitted">
+                <div style="margin: 50px auto; max-width: 600px;">
+                    <table style="width: 100%; border-collapse: collapse; border: 2px solid #16ff00; border-radius: 10px;">
+                        <tr>
+                            <td style="padding: 6px; border: 1px solid #16ff00; font-weight: bold; font-size: 20px;">Ad Soyad</td>
+                            <td style="padding: 6px; border: 1px solid #16ff00; font-size: 20px;">:</td>
+                            <td style="padding: 6px; border: 1px solid #16ff00; font-size: 20px;">{{ name }}</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 6px; border: 1px solid #16ff00; font-weight: bold; font-size: 20px;">Email adresiniz</td>
+                            <td style="padding: 6px; border: 1px solid #16ff00; font-size: 20px;">:</td>
+                            <td style="padding: 6px; border: 1px solid #16ff00; font-size: 20px;">{{ email }}</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 6px; border: 1px solid #16ff00; font-weight: bold; font-size: 20px;">Telefonunuz</td>
+                            <td style="padding: 6px; border: 1px solid #16ff00; font-size: 20px;">:</td>
+                            <td style="padding: 6px; border: 1px solid #16ff00; font-size: 20px;">{{ phone }}</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 6px; border: 1px solid #16ff00; font-weight: bold; font-size: 20px;">Konu</td>
+                            <td style="padding: 6px; border: 1px solid #16ff00; font-size: 20px;">:</td>
+                            <td style="padding: 6px; border: 1px solid #16ff00; font-size: 20px;">{{ subject }}</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 6px; border: 1px solid #16ff00; font-weight: bold; font-size: 20px;">Mesajınız</td>
+                            <td style="padding: 6px; border: 1px solid #16ff00; font-size: 20px;">:</td>
+                            <td style="padding: 6px; border: 1px solid #16ff00; font-size: 20px;">{{ message }}</td>
+                        </tr>
+                    </table>
+                    <button type="submit" class="btn-home" onclick="redirectToHakkimda()">Anasayfaya dön</button>
+                    <h5 style="margin: 30px 0 0 0;">Mesajınız alınmıştır. Bir kaç gün içerisinde dönüş sağlanacaktır!</h5>
+                    <script>
+                        function redirectToHakkimda() {
+                            window.location.href = "hakkimda.php";
+                        }
+                    </script>
                 </div>
-                <div class="input-box">
-                    <div class="input-field field">
-                        <input type="text" placeholder="Telefon numaranız" id="phone" name="phone" class="item" autocomplete="off">
-                        <div class="error-txt phone">Telefon numarası boş bırakılamaz</div>
-                    </div>
-                    <div class="input-field field">
-                        <input type="text" placeholder="Konu" id="subject" name="subject" class="item" autocomplete="off">
-                        <div class="error-txt">Konu boş bırakılamaz</div>
-                    </div>
-                </div>
-                <div class="textarea-field field">
-                    <textarea name="message" id="message" cols="30" rows="10" placeholder="Mesajınız" class="item" autocomplete="off"></textarea>
-                    <div class="error-txt">Mesaj boş bırakılamaz</div>
-                </div>
-                <button type="submit" style="margin-right: 10px;">Gönder</button><button type="reset" style="margin-left: 10px;">Yenile</button>
-            </form>
+            </div>
         </section>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
         <script>
-            const form = document.querySelector('form');
-            const fullName = document.getElementById("name");
-            const email = document.getElementById("email");
-            const phone = document.getElementById("phone");
-            const subject = document.getElementById("subject");
-            const message = document.getElementById("message");
+    function jsSubmit() 
+    {
+        var name = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+        var phone = document.getElementById('phone').value;
+        var subject = document.getElementById('subject').value;
+        var message = document.getElementById('message').value;
+        var errors = {};
 
-            function checkInputs() {
-                const items = document.querySelectorAll(".item");
-                for (const item of items) {
-                    if (item.value == "") {
-                        item.classList.add("error");
-                        item.parentElement.classList.add("error");
-                    }
-
-                    if (items[1].value != "") {
-                        checkEmail();
-                    }
-
-                    items[1].addEventListener("keyup", () => {
-                        checkEmail();
-                    });
-
-                    if (items[2].value != ""){
-                        checkPhone();
-                    }
-
-                    items[2].addEventListener("keyup", () => {
-                        checkPhone();
-                    });
-
-                    item.addEventListener("keyup", () => {
-                        if(item.value != "") {
-                        item.classList.remove("error");
-                        item.parentElement.classList.remove("error");
-                        }
-                        else {
-                        item.classList.add("error");
-                        item.parentElement.classList.add("error");
-                        }
-                    });
-                }
+        if (!name) 
+        {
+            errors.name = "Ad Soyad boş bırakılamaz";
+        }
+        if (!email) 
+        {
+            errors.email = "Email adresi boş bırakılamaz";
+        } 
+        else 
+        {
+            var mailFormat = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            if (!mailFormat.test(email)) 
+            {
+                errors.email = "Lütfen geçerli email adresi giriniz";
             }
-            function checkPhone() {
-                const phoneRegex = /^\d{10}$/;
-
-                const errTxtPhone = document.querySelector(".error-txt.phone");
-
-                if (!phone.value.match(phoneRegex)) {
-                    phone.classList.add("error");
-                    phone.parentElement.classList.add("error");
-
-                     if(phone.value != ""){
-                         errTxtPhone.innerText = "Geçerli bir telefon numarası girinizs"
-                     }
-                     else{
-                        errTxtPhone.innerText = "Telefon numarası boş bırakılamaz"
-                     }
-                }                 
-                else {
-                    phone.classList.remove("error");
-                    phone.parentElement.classList.remove("error");
-                }
+        }
+        if (!phone) 
+        {
+            errors.phone = "Telefon numarası boş bırakılamaz";
+        } 
+        else 
+        {
+            var phoneFormat = /^\d{10}$/;
+            if (!phoneFormat.test(phone)) 
+            {
+                errors.phone = "Lütfen geçerli telefon numarası giriniz";
             }
-            function checkEmail() {
-                const emailRegex = /^([a-z\d\.-]+)@([a-z\d\.-]+)\.([a-z]{2,3})(\.[a-z]{2,3})?$/;
-                
-                const errTxtEmail = document.querySelector(".error-txt.email");
-                
-                if (!email.value.match(emailRegex)) {
-                    email.classList.add("error");
-                    email.parentElement.classList.add("error");
+        }
+        if (!subject) 
+        {
+            errors.subject = "Konu boş bırakılamaz";
+        }
+        if (!message) 
+        {
+            errors.message = "Mesaj boş bırakılamaz";
+        }
 
-                    if(email.value != "") {
-                        errTxtEmail.innerText = "Geçerli email adresi giriniz";
-                    }
-                    else {
-                        errTxtEmail.innerText = "Email adresi boş bırakılamaz";
-                    }
+        if (Object.keys(errors).length === 0) 
+        {
+            alert('Form başarıyla gönderildi!');
+            document.getElementById('contactForm').style.display = 'none';
+            var resultContainer = document.createElement('div');
+            resultContainer.innerHTML = `
+            <div style="margin: 50px auto; max-width: 600px;">
+                    <table style="width: 100%; border-collapse: collapse; border: 2px solid #16ff00; border-radius: 10px;">
+                        <tr>
+                            <td style="padding: 6px; border: 1px solid #16ff00; font-weight: bold; font-size: 20px;">Ad Soyad</td>
+                            <td style="padding: 6px; border: 1px solid #16ff00; font-size: 20px;">:</td>
+                            <td style="padding: 6px; border: 1px solid #16ff00; font-size: 20px;">${name}</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 6px; border: 1px solid #16ff00; font-weight: bold; font-size: 20px;">Email adresiniz</td>
+                            <td style="padding: 6px; border: 1px solid #16ff00; font-size: 20px;">:</td>
+                            <td style="padding: 6px; border: 1px solid #16ff00; font-size: 20px;">${email}</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 6px; border: 1px solid #16ff00; font-weight: bold; font-size: 20px;">Telefonunuz</td>
+                            <td style="padding: 6px; border: 1px solid #16ff00; font-size: 20px;">:</td>
+                            <td style="padding: 6px; border: 1px solid #16ff00; font-size: 20px;">${phone}</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 6px; border: 1px solid #16ff00; font-weight: bold; font-size: 20px;">Konu</td>
+                            <td style="padding: 6px; border: 1px solid #16ff00; font-size: 20px;">:</td>
+                            <td style="padding: 6px; border: 1px solid #16ff00; font-size: 20px;">${subject}</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 6px; border: 1px solid #16ff00; font-weight: bold; font-size: 20px;">Mesajınız</td>
+                            <td style="padding: 6px; border: 1px solid #16ff00; font-size: 20px;">:</td>
+                            <td style="padding: 6px; border: 1px solid #16ff00; font-size: 20px;">${message}</td>
+                        </tr>
+                    </table>
+                    <button type="submit" class="btn-home" onclick="redirectToHakkimda()">Anasayfaya dön</button>
+                    <h5 style="margin: 30px 0 0 0;">Mesajınız alınmıştır. Bir kaç gün içerisinde dönüş sağlanacaktır!</h5>
+                </div>
+            `;
+            document.querySelector('section').appendChild(resultContainer);
+        } 
+        else 
+        {
+            if (errors.name) alert(errors.name);
+            if (errors.email) alert(errors.email);
+            if (errors.phone) alert(errors.phone);
+            if (errors.subject) alert(errors.subject);
+            if (errors.message) alert(errors.message);
+        }
+    }
+    new Vue({
+        el: '#app',
+        data: {
+            name: '',
+            email: '',
+            phone: '',
+            subject: '',
+            message: '',
+            errors: {},
+            submitted: false
+        },
+        methods: 
+        {
+            vueSubmit() 
+            {
+                this.errors = {};
+
+                if (!this.name) 
+                {
+                    this.errors.name = "* Ad ve Soyad boş bırakılamaz";
                 }
-                else {
-                    email.classList.remove("error");
-                    email.parentElement.classList.remove("error");
+                if (!this.email) 
+                {
+                    this.errors.email = "* Email adresi boş bırakılamaz";
+                } 
+                else if (!this.validEmail(this.email)) 
+                {
+                    this.errors.email = "* Lütfen geçerli email adresi giriniz";
                 }
-            }
-            form.addEventListener("submit", (e) => {
-                e.preventDefault();
-                checkInputs();
-                if (!fullName.classList.contains("error") && !email.classList.contains("error") && !phone.classList.contains("error") && !subject.classList.contains("error") && !message.classList.contains("error")) {
-                    form.submit();
-                    return false;
+                if (!this.phone) 
+                {
+                    this.errors.phone = "* Lütfen geçerli telefon numarası giriniz";
+                } 
+                else if (!this.validPhone(this.phone)) 
+                {
+                    this.errors.phone = "* Geçerli telefon numarasi giriniz";
                 }
-            });
+                if (!this.subject) 
+                {
+                    this.errors.subject = "* Konu boş bırakılamaz";
+                }
+                if (!this.message) 
+                {
+                    this.errors.message = "* Mesaj boş bırakılamaz";
+                }
+
+                if (Object.keys(this.errors).length === 0) 
+                {
+                    this.submitted = true;
+                }
+            },
+            validEmail(email) 
+            {
+                var re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+                return re.test(email);
+            },
+            validPhone(phone) 
+            {
+                var er = /^\d{10}$/;
+                return er.test(phone);
+            },
+        }
+    });
         </script>
         <!--============Contact Ends============-->
         <!--============Footer Starts============-->

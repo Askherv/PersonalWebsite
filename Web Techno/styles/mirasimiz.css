@@ -211,14 +211,6 @@ section div div p
     display: flex;
     justify-content: space-evenly;
 }
-.container img
-{
-    width: 400px;
-    height: 300px;
-    border-radius: 20px;
-    margin-left: 20px;
-    margin-bottom: 20px;
-}
 .container p
 {
     color: white;
