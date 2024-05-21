@@ -103,7 +103,7 @@
                     <h5 style="margin: 30px 0 0 0;">Mesajınız alınmıştır. Bir kaç gün içerisinde dönüş sağlanacaktır!</h5>
                     <script>
                         function redirectToHakkimda() {
-                            window.location.href = "hakkimda.php";
+                            window.location.href = "index.php";
                         }
                     </script>
                 </div>
@@ -237,11 +237,11 @@
                 }
                 if (!this.phone) 
                 {
-                    this.errors.phone = "* Lütfen geçerli telefon numarası giriniz";
+                    this.errors.phone = "* Telefon numarası boş bırakılamaz";
                 } 
                 else if (!this.validPhone(this.phone)) 
                 {
-                    this.errors.phone = "* Geçerli telefon numarasi giriniz";
+                    this.errors.phone = "* Lütfen geçerli telefon numarası giriniz";
                 }
                 if (!this.subject) 
                 {
